@@ -6,7 +6,15 @@ public class App {
         // System.out.println("Gana el bueno?: "+ bueno.combate(malo));
         // System.out.println("Gana el malo?: "+malo.combate(bueno));
 
-        SuperHero heroe1 = new SuperHero();
-        SuperHero hero2 = new SuperHero("inteligencia");
+        SuperHuman human1 = new SuperHuman();
+        SuperHuman human2 = new SuperHuman("inteligencia");
+        SuperHero superHero = new SuperHero();
+        SuperVillain superVillain = new SuperVillain();
+
+        System.out.println(superHero instanceof SuperHero);
+        System.out.println(superHero instanceof SuperHuman);
+        System.out.println(superHero.getClass().equals(superVillain.getClass()));
+        System.out.println(superHero.getClass().equals(human1.getClass()));
+        System.out.println(superHero.getClass().equals(SuperHuman.class));
     }
 }
