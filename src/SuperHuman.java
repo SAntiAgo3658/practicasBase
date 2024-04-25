@@ -162,69 +162,84 @@ public class SuperHuman implements CombatSkills{
    // genera un valor aleatorio entre [0..10] y se suma a valorCombate.
    // gana el que tenga el valor más alto.
    public boolean combate(SuperHuman enemy) {
-      Random aleatorio = new Random();
-
-      // enemigo
-      int combateEnemy = 0;
-      // agilidad
-      for (int i = 0; i < enemy.getAgilidad(); i++) {
-         combateEnemy = combateEnemy + aleatorio.nextInt(10);
+      // acaba cuando resistencia de algún luchador sea 0;
+      int miResistencia = this.resistencia;
+      int enemyResistencia = enemy.resistencia;
+      while ( (miResistencia>0) && (enemyResistencia>0)){
+         
       }
-      // fuerza
-      for (int i = 0; i < enemy.getFuerza(); i++) {
-         combateEnemy = combateEnemy + aleatorio.nextInt(10);
-      }
-      // resistencia
-      for (int i = 0; i < enemy.getResistencia(); i++) {
-         combateEnemy = combateEnemy + aleatorio.nextInt(10);
-      }
-
-      // yo
-      int combateYo = 0;
-      // agilidad
-      for (int i = 0; i < this.getAgilidad(); i++) {
-         combateYo = combateYo + aleatorio.nextInt(10);
-      }
-      // fuerza
-      for (int i = 0; i < this.getFuerza(); i++) {
-         combateYo = combateYo + aleatorio.nextInt(10);
-      }
-      // resistencia
-      for (int i = 0; i < this.getResistencia(); i++) {
-         combateYo = combateYo + aleatorio.nextInt(10);
-      }
-
-      return (combateYo >= combateEnemy);
+      return (miResistencia>0);
    }
 
    @Override
-   public void kick() { // se basa en fuerza
+   public int kick() { // se basa en fuerza
       Random aleatorio = new Random();
       int ataque=0;
       for (int i = 0; i < this.getFuerza(); i++) {
          ataque = ataque + aleatorio.nextInt(10);
       }
+      return ataque;
    }
 
    @Override
-   public void punch() { // se basa en fuerza
+   public int punch() { // se basa en fuerza
+      Random aleatorio = new Random();
+      int ataque=0;
       for (int i = 0; i < this.getFuerza(); i++) {
-         combateYo = combateYo + aleatorio.nextInt(10);
+         ataque = ataque + aleatorio.nextInt(10);
       }
+      return ataque;
    }
 
    @Override
-   public void shieldUp() { // se basa en agilidad
+   public int shieldUp() { // se basa en agilidad
+      Random aleatorio = new Random();
+      int defensa=0;
       for (int i = 0; i < this.getAgilidad(); i++) {
-         combateYo = combateYo + aleatorio.nextInt(10);
+         defensa = defensa + aleatorio.nextInt(10);
       }
+      return defensa;
    }
 
    @Override
-   public void shieldDown() { // se basa en agilidad
+   public int shieldDown() { // se basa en agilidad
+      Random aleatorio = new Random();
+      int defensa=0;
       for (int i = 0; i < this.getAgilidad(); i++) {
-         combateYo = combateYo + aleatorio.nextInt(10);
+         defensa = defensa + aleatorio.nextInt(10);
       }
+      return defensa;
+   }
+
+   private int tiradaDados(String atributo){
+      Random aleatorio = new Random();
+      int resultado=0;
+      switch (atributo) {
+         case "inteligencia":
+         for (int i = 0; i < this.getInteligencia(); i++) {
+            resultado = resultado + aleatorio.nextInt(10);
+         }
+            break;
+         case "agilidad":
+         for (int i = 0; i < this.getAgilidad(); i++) {
+            resultado = resultado + aleatorio.nextInt(10);
+         }
+            break;
+            case "fuerza":
+            for (int i = 0; i < this.getFuerza(); i++) {
+               resultado = resultado + aleatorio.nextInt(10);
+            }
+               break;
+               case "resistencia":
+         for (int i = 0; i < this.getResistencia(); i++) {
+            resultado = resultado + aleatorio.nextInt(10);
+         }
+            break;
+         default:
+            break;
+      }
+      
+      return resultado;
    }
 
 }
