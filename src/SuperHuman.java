@@ -1,6 +1,8 @@
 import java.util.Random;
 
-public class SuperHuman {
+import skills.CombatSkills;
+
+public class SuperHuman implements CombatSkills{
    // los atributos numéricos siempre van a estar entre [0..100]
    // atributos:
    // nombre como string
@@ -193,6 +195,36 @@ public class SuperHuman {
       }
 
       return (combateYo >= combateEnemy);
+   }
+
+   @Override
+   public void kick() { // se basa en fuerza
+      Random aleatorio = new Random();
+      int ataque=0;
+      for (int i = 0; i < this.getFuerza(); i++) {
+         ataque = ataque + aleatorio.nextInt(10);
+      }
+   }
+
+   @Override
+   public void punch() { // se basa en fuerza
+      for (int i = 0; i < this.getFuerza(); i++) {
+         combateYo = combateYo + aleatorio.nextInt(10);
+      }
+   }
+
+   @Override
+   public void shieldUp() { // se basa en agilidad
+      for (int i = 0; i < this.getAgilidad(); i++) {
+         combateYo = combateYo + aleatorio.nextInt(10);
+      }
+   }
+
+   @Override
+   public void shieldDown() { // se basa en agilidad
+      for (int i = 0; i < this.getAgilidad(); i++) {
+         combateYo = combateYo + aleatorio.nextInt(10);
+      }
    }
 
 }
