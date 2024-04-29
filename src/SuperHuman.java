@@ -1,6 +1,7 @@
 import java.util.Random;
 
 import skills.CombatSkills;
+import skills.Skill;
 
 public class SuperHuman implements CombatSkills {
 
@@ -72,34 +73,34 @@ public class SuperHuman implements CombatSkills {
 
    // con un parametro q indica q parámetro va a a ser predominante.
 
-   public SuperHuman(String caracteristica) {
+   public SuperHuman(Skill habilidad) {
       Random aleatorio = new Random();
       this.nombre = "Unknown";
 
-      switch (caracteristica) {
+      switch (habilidad) {
 
-         case "inteligencia":
+         case inteligencia:
             this.inteligencia = aleatorio.nextInt(5, 10);
             this.agilidad = aleatorio.nextInt(10);
             this.fuerza = aleatorio.nextInt(10);
             this.resistencia = aleatorio.nextInt(10);
             break;
 
-         case "agilidad":
+         case agilidad:
             this.inteligencia = aleatorio.nextInt(10);
             this.agilidad = aleatorio.nextInt(5, 10);
             this.fuerza = aleatorio.nextInt(10);
             this.resistencia = aleatorio.nextInt(10);
             break;
 
-         case "fuerza":
+         case fuerza:
             this.inteligencia = aleatorio.nextInt(10);
             this.agilidad = aleatorio.nextInt(10);
             this.fuerza = aleatorio.nextInt(5, 10);
             this.resistencia = aleatorio.nextInt(10);
             break;
 
-         case "resistencia":
+         case resistencia:
             this.inteligencia = aleatorio.nextInt(10);
             this.agilidad = aleatorio.nextInt(10);
             this.fuerza = aleatorio.nextInt(5, 10);
@@ -196,24 +197,24 @@ public class SuperHuman implements CombatSkills {
    // ejemplo: entrenamiento(5,"agilidad");
    // me incrementa agilidad en un valor=[0..5](aleatorio)
 
-   public void entrenamiento(int dias, String caracteristica) {
+   public void entrenamiento(int dias, Skill caracteristica) {
       Random aleatorio = new Random();
 
       switch (caracteristica) {
 
-         case "inteligencia":
+         case inteligencia:
             this.setInteligencia(aleatorio.nextInt(dias));
             break;
 
-         case "agilidad":
+         case agilidad:
             this.setAgilidad(aleatorio.nextInt(dias));
             break;
 
-         case "fuerza":
+         case fuerza:
             this.setFuerza(aleatorio.nextInt(dias));
             break;
 
-         case "resistencia":
+         case resistencia:
             this.setResistencia(aleatorio.nextInt(dias));
             break;
 
@@ -244,7 +245,7 @@ public class SuperHuman implements CombatSkills {
 
       while ((miResistencia > 0) && (enemyResistencia > 0)) {
 
-         if (this.tiradaDados("inteligencia") > enemy.tiradaDados("inteligencia")) {
+         if (this.tiradaDados(Skill.inteligencia) > enemy.tiradaDados(Skill.inteligencia)) {
             // Ataco yo
             System.out.print("Atacante: YO [");
 
@@ -361,38 +362,38 @@ public class SuperHuman implements CombatSkills {
    @Override
    public int kick() { // Se basa en fuerza
 
-      return tiradaDados("fuerza");
+      return tiradaDados(Skill.fuerza);
 
    }
 
    @Override
    public int punch() { // Se basa en fuerza
 
-      return tiradaDados("fuerza");
+      return tiradaDados(Skill.fuerza);
 
    }
 
    @Override
    public int shieldUp() { // Se basa en agilidad
 
-      return tiradaDados("agilidad");
+      return tiradaDados(Skill.agilidad);
 
    }
 
    @Override
    public int shielDown() { // Se basa en agilidad
 
-      return tiradaDados("agilidad");
+      return tiradaDados(Skill.agilidad);
 
    }
 
-   private int tiradaDados(String atributo) {
+   private int tiradaDados(Skill atributo) {
 
       Random aleatorio = new Random();
       int resultado = 0;
 
       switch (atributo) {
-         case "inteligencia":
+         case inteligencia:
             for (int i = 0; i < this.getInteligencia(); i++) {
                resultado = resultado + aleatorio.nextInt(10);
 
@@ -400,7 +401,7 @@ public class SuperHuman implements CombatSkills {
 
             break;
 
-         case "agilidad":
+         case agilidad:
             for (int i = 0; i < this.getAgilidad(); i++) {
                resultado = resultado + aleatorio.nextInt(10);
 
@@ -408,7 +409,7 @@ public class SuperHuman implements CombatSkills {
 
             break;
 
-         case "fuerza":
+         case fuerza:
             for (int i = 0; i < this.getFuerza(); i++) {
                resultado = resultado + aleatorio.nextInt(10);
 
@@ -416,7 +417,7 @@ public class SuperHuman implements CombatSkills {
 
             break;
 
-         case "resistencia":
+         case resistencia:
             for (int i = 0; i < this.getResistencia(); i++) {
                resultado = resultado + aleatorio.nextInt(10);
 

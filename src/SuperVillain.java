@@ -1,3 +1,4 @@
+import skills.Skill;
 
 public class SuperVillain extends SuperHuman {
 
@@ -14,7 +15,7 @@ public class SuperVillain extends SuperHuman {
 
     }
 
-    public SuperVillain(String caracteristica) {
+    public SuperVillain(Skill caracteristica) {
         super(caracteristica);
         this.moral = 0;
 
