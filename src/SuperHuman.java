@@ -144,6 +144,40 @@ public class SuperHuman implements CombatSkills {
 
    }
 
+   private void setInteligencia(int valor) {
+      this.inteligencia = this.inteligencia + valor;
+
+      if (this.inteligencia > 100) {
+         this.inteligencia = 100;
+
+      }
+
+   }
+
+   private void setAgilidad(int valor) {
+      this.agilidad = this.agilidad + valor;
+      if (this.agilidad > 100) {
+         this.agilidad = 100;
+
+      }
+   }
+
+   private void setFuerza(int valor) {
+      this.fuerza = this.fuerza + valor;
+      if (this.fuerza > 100) {
+         this.fuerza = 100;
+
+      }
+   }
+
+   private void setResistencia(int valor) {
+      this.resistencia = this.resistencia + valor;
+      if (this.resistencia > 100) {
+         this.resistencia = 100;
+
+      }
+   }
+
    // toString (de VSC)
 
    @Override
@@ -168,19 +202,19 @@ public class SuperHuman implements CombatSkills {
       switch (caracteristica) {
 
          case "inteligencia":
-            this.inteligencia = this.inteligencia + aleatorio.nextInt(dias);
+            this.setInteligencia(aleatorio.nextInt(dias));
             break;
 
          case "agilidad":
-            this.agilidad = this.agilidad + aleatorio.nextInt(dias);
+            this.setAgilidad(aleatorio.nextInt(dias));
             break;
 
          case "fuerza":
-            this.fuerza = this.fuerza + aleatorio.nextInt(dias);
+            this.setFuerza(aleatorio.nextInt(dias));
             break;
 
          case "resistencia":
-            this.resistencia = this.resistencia + aleatorio.nextInt(dias);
+            this.setResistencia(aleatorio.nextInt(dias));
             break;
 
          default:
@@ -224,16 +258,15 @@ public class SuperHuman implements CombatSkills {
 
                   golpe = enemy.shielDown() - this.kick();
 
-                  if (golpe < 0) {
-                     // He paradao pero me ha hecho daño
-                     enemyResistencia = enemyResistencia + (enemy.shielDown() - this.kick());
-
-                  } // Si he parado pero no me ha hecho daño no hago nada
-
                } else {
                   // Fallo en parar, defiendo con la mitad
                   System.out.print("no parada ");
                   golpe = (enemy.shielDown() / 2) - this.kick();
+
+               }
+
+               if (golpe < 0) {
+
                   enemyResistencia = enemyResistencia + golpe;
 
                }
@@ -247,16 +280,15 @@ public class SuperHuman implements CombatSkills {
                   System.out.print("parado ");
                   golpe = enemy.shieldUp() - this.punch();
 
-                  if (golpe < 0) {
-                     // He paradao pero me ha hecho daño
-                     enemyResistencia = enemyResistencia + (enemy.shieldUp() - this.punch());
-
-                  } // Si he parado pero no me ha hecho daño no hago nada
-
                } else {
                   // Fallo en parar, defiendo con la mitad
                   System.out.print("no parado ");
                   golpe = (enemy.shieldUp() / 2) - this.punch();
+
+               }
+
+               if (golpe < 0) {
+
                   enemyResistencia = enemyResistencia + golpe;
 
                }
@@ -278,16 +310,14 @@ public class SuperHuman implements CombatSkills {
                   System.out.print("parada ");
                   golpe = this.shielDown() - enemy.kick();
 
-                  if (golpe < 0) {
-                     // He paradao pero me ha hecho daño
-                     miResistencia = miResistencia + (this.shielDown() - enemy.kick());
-
-                  } // Si he parado pero no me ha hecho daño no hago nada
-
                } else {
                   // Fallo en parar, defiendo con la mitad
                   System.out.print("no parada ");
                   golpe = (this.shielDown() / 2) - enemy.kick();
+
+               }
+
+               if (golpe < 0) {
                   miResistencia = miResistencia + golpe;
 
                }
@@ -301,16 +331,14 @@ public class SuperHuman implements CombatSkills {
                   System.out.print("parado ");
                   golpe = this.shieldUp() - enemy.punch();
 
-                  if (golpe < 0) {
-                     // He paradao pero me ha hecho daño
-                     miResistencia = miResistencia + (this.shieldUp() - enemy.punch());
-
-                  } // Si he parado pero no me ha hecho daño no hago nada
-
                } else {
                   // Fallo en parar, defiendo con la mitad
                   System.out.print("no parado ");
                   golpe = (this.shieldUp() / 2) - enemy.punch();
+
+               }
+
+               if (golpe < 0) {
                   miResistencia = miResistencia + golpe;
 
                }
