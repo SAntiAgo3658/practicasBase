@@ -5,7 +5,6 @@ public class App {
         System.out.println(danielHero.toString());
         System.out.println(putin.toString());
 
-        danielHero.entrenamiento(0, null);
         danielHero.combate(putin);
     }
 }
