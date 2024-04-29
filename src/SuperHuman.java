@@ -166,16 +166,16 @@ public class SuperHuman implements CombatSkills {
 
       switch (caracteristica) {
          case inteligencia:
-            this.setInteligencia( aleatorio.nextInt(dias));
+            this.setInteligencia(aleatorio.nextInt(dias));
             break;
          case agilidad:
-         this.setAgilidad(aleatorio.nextInt(dias));
+            this.setAgilidad(aleatorio.nextInt(dias));
             break;
          case fuerza:
-         this.setFuerza( aleatorio.nextInt(dias));
+            this.setFuerza(aleatorio.nextInt(dias));
             break;
          case resistencia:
-         this.setResistencia( aleatorio.nextInt(dias));
+            this.setResistencia(aleatorio.nextInt(dias));
             break;
          default:
             break;
@@ -184,94 +184,16 @@ public class SuperHuman implements CombatSkills {
 
    public boolean combate(SuperHuman enemy) {
       // acaba cuando resistencia de algún luchador sea 0;
-      Random aleatorio = new Random();
       int miResistencia = this.resistencia;
       int enemyResistencia = enemy.resistencia;
       int golpe = 0;
       while ((miResistencia > 0) && (enemyResistencia > 0)) {
          if (this.tiradaDados(Skill.inteligencia) > enemy.tiradaDados(Skill.inteligencia)) {
             // ataco yo
-            System.out.print("Atacante: YO [");
-            if (aleatorio.nextBoolean()) {
-               // patada
-               System.out.print("Patada ");
-               if (aleatorio.nextInt(100) >= (100 - enemy.inteligencia)) {
-                  // exito en parar
-                  System.out.print("parada ");
-                  golpe = enemy.shieldDown() - this.kick();
-
-               } else {
-                  // fallo en parar
-                  System.out.print(" no parada ");
-                  // defiendo con la mitad.
-                  golpe = (enemy.shieldDown() / 2) - this.kick();
-
-               }
-               if (golpe < 0) {
-                  // he parado pero me ha hecho daño.
-                  enemyResistencia = enemyResistencia + golpe;
-               } // si he parado pero no me ha hecho daño, no hago nada.
-            } else {
-               // puñetazo
-               System.out.print("Puñetazo ");
-               if (aleatorio.nextInt(100) >= (100 - enemy.inteligencia)) {
-                  // exito en parar
-                  System.out.print("parado ");
-                  golpe = enemy.shieldUp() - this.punch();
-
-               } else {
-                  // fallo en parar
-                  System.out.print("no parado ");
-                  // defiendo con la mitad.
-                  golpe = (enemy.shieldUp() / 2) - this.punch();
-               }
-               if (golpe < 0) {
-                  // he parado pero me ha hecho daño.
-                  enemyResistencia = enemyResistencia + golpe;
-               } // si he parado pero no me ha hecho daño, no hago nada.
-            }
-            System.out.println("]");
-
+            enemyResistencia = ataque(this, enemy, enemyResistencia);
          } else {
             // atacas tu
-            System.out.print("Atacante: EL [");
-            if (aleatorio.nextBoolean()) {
-               // patada
-               System.out.print("Patada ");
-               if (aleatorio.nextInt(100) >= (100 - this.inteligencia)) {
-                  // exito en parar
-                  System.out.print("parada ");
-                  golpe = this.shieldDown() - enemy.kick();
-               } else {
-                  // fallo en parar
-                  System.out.print(" no parada ");
-                  // defiendo con la mitad.
-                  golpe = (this.shieldDown() / 2) - enemy.kick();
-               }
-               if (golpe < 0) {
-                  // he parado pero me ha hecho daño.
-                  miResistencia = miResistencia + golpe;
-               } // si he parado pero no me ha hecho daño, no hago nada.
-            } else {
-               // puñetazo
-               System.out.print("Puñetazo ");
-               if (aleatorio.nextInt(100) >= (100 - this.inteligencia)) {
-                  // exito en parar
-                  System.out.print("parado ");
-                  golpe = this.shieldUp() - enemy.punch();
-
-               } else {
-                  // fallo en parar
-                  System.out.print("no parado ");
-                  // defiendo con la mitad.
-                  golpe = (this.shieldUp() / 2) - enemy.punch();
-               }
-               if (golpe < 0) {
-                  // he parado pero me ha hecho daño.
-                  miResistencia = miResistencia + golpe;
-               } // si he parado pero no me ha hecho daño, no hago nada.
-            }
-            System.out.println("]");
+            miResistencia = ataque(enemy, this, miResistencia);
          }
          System.out.println("[Mi resistencia: " + miResistencia +
                "] [Enemy resistencia: " + enemyResistencia + "]");
@@ -329,6 +251,55 @@ public class SuperHuman implements CombatSkills {
       }
 
       return resultado;
+   }
+
+   // devolver la resistencia resultante en el defensor
+   private static int ataque(SuperHuman atacante, SuperHuman defensor, int defensorResistencia) {
+      Random aleatorio = new Random();
+      int golpe = 0;
+
+      System.out.print("Atacante: " + atacante.nombre + " [");
+
+      if (aleatorio.nextBoolean()) {
+         // patada
+         System.out.print("Patada ");
+         if (aleatorio.nextInt(100) >= (100 - defensor.inteligencia)) {
+            // exito en parar
+            System.out.print("parada ");
+            golpe = defensor.shieldDown() - atacante.kick();
+
+         } else {
+            // fallo en parar
+            System.out.print(" no parada ");
+            // defiendo con la mitad.
+            golpe = (defensor.shieldDown() / 2) - atacante.kick();
+
+         }
+         if (golpe < 0) {
+            // he parado pero me ha hecho daño.
+            defensorResistencia = defensorResistencia + golpe;
+         } // si he parado pero no me ha hecho daño, no hago nada.
+      } else {
+         // puñetazo
+         System.out.print("Puñetazo ");
+         if (aleatorio.nextInt(100) >= (100 - defensor.inteligencia)) {
+            // exito en parar
+            System.out.print("parado ");
+            golpe = defensor.shieldUp() - atacante.punch();
+
+         } else {
+            // fallo en parar
+            System.out.print("no parado ");
+            // defiendo con la mitad.
+            golpe = (defensor.shieldUp() / 2) - atacante.punch();
+         }
+         if (golpe < 0) {
+            // he parado pero me ha hecho daño.
+            defensorResistencia = defensorResistencia + golpe;
+         } // si he parado pero no me ha hecho daño, no hago nada.
+      }
+      System.out.println("]");
+      return defensorResistencia;
    }
 
 }
