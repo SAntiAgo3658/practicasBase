@@ -3,7 +3,7 @@ import java.util.Random;
 import skills.CombatSkills;
 import skills.Skill;
 
-public class SuperHuman implements CombatSkills {
+public abstract class  SuperHuman implements CombatSkills {
    // los atributos numéricos siempre van a estar entre [0..100]
    // atributos:
    // nombre como string
