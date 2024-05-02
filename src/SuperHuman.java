@@ -9,11 +9,15 @@ public abstract class  SuperHuman implements CombatSkills {
    // nombre como string
    // caracteristicas (de tipo numérico):
    // inteligencia, agilidad, fuerza, resistencia.
+   // atributo de clase con el id actual para q cada superHuman tenga uno y sea
+   // consecutivo.
    private String nombre;
    private int inteligencia;
    private int agilidad;
    private int fuerza;
    private int resistencia;
+   private static int id_actual=0;
+   private int id;
 
    // constructorES !!
    // con todos los parámetros.
@@ -43,6 +47,8 @@ public abstract class  SuperHuman implements CombatSkills {
       } else {
          this.fuerza = 0;
       }
+      this.id = id_actual;
+      id_actual++;
 
    }
 
@@ -54,6 +60,8 @@ public abstract class  SuperHuman implements CombatSkills {
       this.agilidad = aleatorio.nextInt(10);
       this.fuerza = aleatorio.nextInt(10);
       this.resistencia = aleatorio.nextInt(10);
+      this.id = id_actual;
+      id_actual++;
    }
 
    // con un parametro q indica q parámetro va a a ser predominante.
@@ -91,9 +99,25 @@ public abstract class  SuperHuman implements CombatSkills {
          default:
             break;
       }
+      this.id = id_actual;
+      id_actual++;
+   }
+
+   public SuperHuman(String nombre){
+      this();
+      this.setNombre(nombre);
    }
 
    // getters y setters
+
+   public int getId(){
+      return this.id;
+   }
+
+   public static int getIdActual(){
+      return id_actual;
+   }
+   
    public String getNombre() {
       return nombre;
    }

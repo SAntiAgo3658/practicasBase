@@ -19,6 +19,11 @@ public class SuperHero extends SuperHuman {
       this.moral = 0;
    }
 
+   public SuperHero(String nombre){
+      super(nombre);
+      this.moral = 0;
+   }
+
    public int getMoral() {
       return moral;
    }
@@ -37,4 +42,13 @@ public class SuperHero extends SuperHuman {
          return true;
       }
    }
+
+   @Override
+   public String toString() {
+      return "SuperHero [moral=" + moral + ", Nombre=" + getNombre() + ", Inteligencia=" + getInteligencia()
+            + ", Agilidad=" + getAgilidad() + ", Fuerza=" + getFuerza() + ", Resistencia="
+            + getResistencia() + "]";
+   }
+
+   
 }

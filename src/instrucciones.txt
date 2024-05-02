@@ -1,0 +1,46 @@
+Crear un constructor con un parámetro de entrada para el nombre.
+Dicho constructor llamará al constructor por defecto(sin parámetros) y le asignará
+el nombre que se le ha pasado por parámetro a él.
+
+En los combates guardar los golpes dados y recibidos y emitir informe al final del combate.
+   Crear una clase InformeCombate q sería una lista de la clase Golpe
+      la clase Golpe atributos: 
+         atacante (el id)
+         tipoGolpe (patada o puñetazo)
+         
+
+hacer serializables tanto supervillain como superhero.
+Para tener implementado previo a base de datos cada clase debe tener un atributo de
+clase lastID privado q se autoincremente al crear un objeto y asigne a ese objeto dicho
+id.
+
+implementar métodos de clase para guardar un objeto y recuperarlo.
+
+Para practicar los archivos donde se almacenen serán de tipo .xml con la siguiente
+estructura:
+   <heroes>
+      <hero>
+         <nombre></nombre>
+         <atributos>
+            <id> </id>
+            <inteligencia> </inteligencia>
+            <agilidad> </agilidad>
+            <fuerza> </fuerza>
+            <resistencia> </resistencia>
+            <moral> </moral>
+         </atributos>
+         <combates>
+            <combate>
+               <enemy> </enemy>              
+               <resultado> </resultado>
+               <informe> </informe>
+            </combate>
+         </combates>
+         <entrenamientos>
+            <entrenamiento>
+               <dias> </dias>
+               <atributo> </atributo>
+            </entrenamiento>
+         </entrenamientos>
+      </hero>
+   </heroes>
